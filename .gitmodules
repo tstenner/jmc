@@ -1,0 +1,16 @@
+[submodule "jameica"]
+	path = jameica
+	url = git@github.com:willuhn/jameica.git
+	branch = master
+[submodule "lib/datasource"]
+	path = lib/datasource
+	url = git@github.com:willuhn/datasource.git
+	branch = master
+[submodule "lib/util"]
+	path = lib/util
+	url = git@github.com:willuhn/util.git
+	branch = master
+[submodule "plugins/hibiscus"]
+	path = plugins/hibiscus
+	url = git@github.com:willuhn/hibiscus.git
+	branch = master
