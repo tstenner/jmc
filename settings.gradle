@@ -6,3 +6,6 @@
  */
 
 rootProject.name = 'jmc'
+
+include 'lib:util'
+include 'lib:datasource'
