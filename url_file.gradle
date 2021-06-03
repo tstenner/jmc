@@ -1,0 +1,16 @@
+// Directly download Jar files (e.g. because they are stored outside of Maven Central)
+// see <https://stackoverflow.com/a/38105112>
+ext {
+    urlFile = { name, url ->
+        File file = new File("${buildDir}/download/${name}.jar")
+        file.parentFile.mkdirs()
+        if (!file.exists()) {
+            new URL(url).withInputStream { downloadStream ->
+                file.withOutputStream { fileOut ->
+                    fileOut << downloadStream
+                }
+            }
+        }
+        files(file.absolutePath)
+    }
+}

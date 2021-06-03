@@ -1,0 +1,40 @@
+import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
+import org.gradle.nativeplatform.platform.internal.ArchitectureInternal
+
+// Eclipse SWT is platform specific
+
+static String swtPlat(OperatingSystem os) {
+    if(os.isWindows())
+        return 'win32.win32'
+    else if(os.isLinux())
+        return 'gtk.linux'
+    else if(os.isMacOsX())
+        return 'cocoa.macosx'
+    else
+        return 'unknown'
+}
+
+static String swtArch(ArchitectureInternal a) {
+    if (a.isI386())
+        return 'x86'
+    else if (a.isAmd64())
+        return 'x86_64'
+    else
+        return 'unknown'
+}
+
+ext {
+    swtVersion = '3.116.0'
+    def p = DefaultNativePlatform
+    swtPlatform = swtPlat(p.currentOperatingSystem) + '.' + swtArch(p.currentArchitecture)
+}
+
+configurations.all {
+    resolutionStrategy {
+        dependencySubstitution {
+            // The maven property ${osgi.platform} is not handled by Gradle
+            // see <https://github.com/LWJGLX/lwjgl3-swt/blob/main/build.gradle>
+            substitute module('org.eclipse.platform:org.eclipse.swt.${osgi.platform}') with module('org.eclipse.platform:org.eclipse.swt.'+swtPlatform+':'+swtVersion)
+        }
+    }
+}
