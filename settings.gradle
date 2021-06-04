@@ -12,3 +12,18 @@ include 'lib:datasource'
 include 'jameica'
 include 'plugins:hibiscus'
 include 'plugins:example'
+
+// in Gradle 7.0.2 ist dies noch im Status "feature preview"
+enableFeaturePreview('VERSION_CATALOGS')
+// siehe <https://docs.gradle.org/7.0.2/userguide/platforms.html>
+// für Details siehe <https://melix.github.io/blog/2021/03/version-catalogs.html>
+
+// Eclipse SWT ist plattformabhängig (siehe auch `./build.gradle`)
+dependencyResolutionManagement {
+    versionCatalogs {
+        swt {
+            apply from: "./eclipse_swt.gradle"
+            alias('platform').to('org.eclipse.platform', "org.eclipse.swt.${swtPlatform}").version("${swtVersion}")
+        }
+    }
+}

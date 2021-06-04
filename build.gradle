@@ -2,6 +2,19 @@ plugins {
     id 'eclipse' // optional (to generate Eclipse project files)
     id 'idea' // optional (to generate IntelliJ IDEA project files)
 }
+apply from: "./eclipse_swt.gradle"
 
 group 'de.willuhn'
 version '0.1-SNAPSHOT'
+
+allprojects {
+    configurations.all {
+        resolutionStrategy {
+            dependencySubstitution {
+                // The maven property ${osgi.platform} is not handled by Gradle
+                // see <https://github.com/LWJGLX/lwjgl3-swt/blob/main/build.gradle>
+                substitute module('org.eclipse.platform:org.eclipse.swt.${osgi.platform}') with module('org.eclipse.platform:org.eclipse.swt.' + swtPlatform + ':' + swtVersion)
+            }
+        }
+    }
+}
