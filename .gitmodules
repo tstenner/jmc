@@ -14,3 +14,7 @@
 	path = plugins/hibiscus
 	url = git@github.com:ruderphilipp/hibiscus.git
 	branch = gradle
+[submodule "plugins/example"]
+	path = plugins/example
+	url = git@github.com:ruderphilipp/jameica.example.git
+	branch = gradle
