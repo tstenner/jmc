@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/jameica" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/datasource" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/util" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/plugins/example" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/plugins/hibiscus" vcs="Git" />
+  </component>
+</project>
