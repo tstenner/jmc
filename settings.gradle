@@ -22,7 +22,7 @@ enableFeaturePreview('VERSION_CATALOGS')
 dependencyResolutionManagement {
     versionCatalogs {
         swt {
-            apply from: "./eclipse_swt.gradle"
+            apply from: './gradle/eclipse_swt.gradle'
             alias('platform').to('org.eclipse.platform', "org.eclipse.swt.${swtPlatform}").version("${swtVersion}")
         }
     }

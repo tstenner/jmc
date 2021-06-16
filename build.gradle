@@ -2,7 +2,7 @@ plugins {
     id 'eclipse' // optional (to generate Eclipse project files)
     id 'idea' // optional (to generate IntelliJ IDEA project files)
 }
-apply from: "./eclipse_swt.gradle"
+apply from: './gradle/eclipse_swt.gradle'
 
 group 'de.willuhn'
 version '0.1-SNAPSHOT'
