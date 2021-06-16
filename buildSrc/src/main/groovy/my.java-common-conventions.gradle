@@ -1,0 +1,27 @@
+plugins {
+    // Apply the common IDE convention plugin.
+    id 'my.java-ide-conventions'
+
+    // Apply the java Plugin to add support for Java.
+    id 'java'
+}
+
+repositories {
+    // Use Maven Central for resolving dependencies.
+    mavenCentral()
+}
+
+dependencies {
+    // Use JUnit Jupiter API for testing.
+    testImplementation libs.junit.jupiter
+    // Use JUnit Vintage for JUnit4 test cases
+    testImplementation libs.junit.vintage
+
+    // Use JUnit Jupiter Engine for testing.
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+tasks.named('test') {
+    // Use junit platform for unit tests.
+    useJUnitPlatform()
+}

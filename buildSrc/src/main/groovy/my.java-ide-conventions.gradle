@@ -1,0 +1,19 @@
+plugins {
+    // enable generation of Eclipse project files
+    id 'eclipse' // optional (to )
+    // enable generation of IntelliJ IDEA project files
+    id 'idea'
+}
+
+eclipse {
+    classpath {
+        downloadJavadoc = true
+        downloadSources = false
+    }
+}
+idea {
+    module {
+        downloadJavadoc = true
+        downloadSources = false
+    }
+}
