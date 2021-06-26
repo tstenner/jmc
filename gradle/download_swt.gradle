@@ -1,0 +1,17 @@
+import org.gradle.nativeplatform.platform.internal.DefaultOperatingSystem
+
+apply from: "${rootProject.rootDir}/gradle/eclipse_swt.gradle"
+apply from: "${rootProject.rootDir}/gradle/url_file.gradle"
+
+task downloadSwt() {
+    def operatingSystems = [new DefaultOperatingSystem('windows'), new DefaultOperatingSystem('linux'), new DefaultOperatingSystem('osx')]
+    def architectures = ['x86_64'] // in 2021 sind die Builds nur noch für 64bit erhältlich
+    // erstelle alle Permutationen ([a], [b, c]) => [[a,b], [a,c]]
+    def allSwtPlatforms = GroovyCollections.combinations(operatingSystems.collect({swtPlat(it)}), architectures)
+    // kombiniere die inneren Listen [[a,b], [a,c]] => [a.b, a.c]
+    allSwtPlatforms = allSwtPlatforms.collect {it.join('.')}
+
+    allSwtPlatforms.forEach({
+        urlFile("org.eclipse.swt.${it}-${swtVersion}", "https://repo1.maven.org/maven2/org/eclipse/platform/org.eclipse.swt.${it}/${swtVersion}/org.eclipse.swt.${it}-${swtVersion}.jar")
+    })
+}

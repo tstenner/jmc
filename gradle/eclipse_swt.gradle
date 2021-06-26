@@ -3,7 +3,7 @@ import org.gradle.nativeplatform.platform.internal.ArchitectureInternal
 
 // Eclipse SWT is platform specific
 
-static String swtPlat(OperatingSystem os) {
+ext.swtPlat = { OperatingSystem os ->
     if(os.isWindows())
         return 'win32.win32'
     else if(os.isLinux())
@@ -14,7 +14,7 @@ static String swtPlat(OperatingSystem os) {
         return 'unknown'
 }
 
-static String swtArch(ArchitectureInternal a) {
+ext.swtArch = { ArchitectureInternal a ->
     if (a.isI386())
         return 'x86'
     else if (a.isAmd64())
