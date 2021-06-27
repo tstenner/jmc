@@ -1,0 +1,39 @@
+// nur, wenn das Plugin 'java' im Subprojekt aktiv ist (siehe <https://stackoverflow.com/a/46208792>)
+pluginManager.withPlugin('java') {
+    // Copy-Tasks werfen keine Fehlermeldung, falls 'from'-Quelle nicht vorhanden ist
+
+    task collectTargetJar(type: Copy, dependsOn: jar) {
+        from 'build/gradle/libs'
+        from 'build/libs'
+
+        into "${buildDir}/target"
+
+        duplicatesStrategy DuplicatesStrategy.EXCLUDE
+        includeEmptyDirs = false
+    }
+
+    task collectTargetDeps(type: Copy) {
+        from 'build/downloads'
+        // seit Gradle 7 nicht mehr configurations.runtime! Siehe <https://stackoverflow.com/a/66910991>
+        from(configurations.compileClasspath) {
+            include '**/*.jar'
+        }
+
+        into "${buildDir}/target/dependencies"
+
+        duplicatesStrategy DuplicatesStrategy.EXCLUDE
+        includeEmptyDirs = false
+    }
+
+    // erzeugen
+    task collectTargetAll(dependsOn: [collectTargetJar, collectTargetDeps])
+    // -> in Toolchain einbinden
+    tasks.build.dependsOn(tasks.collectTargetAll)
+
+    // aufräumen
+    task cleanTarget(type: Delete) {
+        delete "${buildDir}/target"
+    }
+    // -> in Toolchain einbinden
+    tasks.clean.dependsOn(tasks.cleanTarget)
+}

@@ -17,4 +17,5 @@ allprojects {
             }
         }
     }
+    apply from: "${rootProject.rootDir}/gradle/task_collect_deps.gradle"
 }
