@@ -35,6 +35,27 @@ Code inital besorgen
 
    Um den Inhalt der referenzierten Projekte zu holen, führe `git submodule update --init --recursive --remote` aus.
    Jetzt wird automatisch jedes Subprojekt heruntergeladen und der letzte Stand aus dem hinterlegtem Branch ausgecheckt.
+   
+   :warning: Manchmal scheint das nicht sofort zu klappen.
+   Ich habe die Ursache noch nicht herausgefunden.
+   Mein "Trick" ist es, das Folgende mehrfach zu wiederholen und dabei stets den Erfolg zu überprüfen:
+   ```shell
+   # Schritt 1: alle Submodule aushängen
+   git submodule deinit --all
+   # sollte nichts anzeigen
+   git config --list | grep submodule
+   # Submodule neu initialisieren und neuesten Stand abrufen
+   git submodule update --init --recursive --remote --force --checkout
+   # hier sollten nun die angepassten URLs stehen
+   git config --list | grep submodule
+   # Konfiguration synchronisieren
+   git submodule sync --recursive
+   # spätestens jetzt sollte alles passen, sonst nochmal von vorn
+   git config --list | grep submodule
+   #
+   # Schritt 2: Falls OK, dann nun den korrekten Branch auschecken (wegen "detached head") und neuesten Stand holen
+   git submodule foreach "git checkout master; git pull"
+   ```
 
 
 Auf dem neuesten Stand bleiben
