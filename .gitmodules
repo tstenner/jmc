@@ -1,20 +1,20 @@
 [submodule "jameica"]
 	path = jameica
-	url = git@github.com:ruderphilipp/jameica.git
-	branch = gradle
+	url = git@github.com:willuhn/jameica.git
+	branch = master
 [submodule "lib/datasource"]
 	path = lib/datasource
-	url = git@github.com:ruderphilipp/datasource.git
-	branch = gradle
+	url = git@github.com:willuhn/datasource.git
+	branch = master
 [submodule "lib/util"]
 	path = lib/util
-	url = git@github.com:ruderphilipp/util.git
-	branch = gradle
+	url = git@github.com:willuhn/util.git
+	branch = master
 [submodule "plugins/hibiscus"]
 	path = plugins/hibiscus
-	url = git@github.com:ruderphilipp/hibiscus.git
-	branch = gradle
+	url = git@github.com:willuhn/hibiscus.git
+	branch = master
 [submodule "plugins/example"]
 	path = plugins/example
-	url = git@github.com:ruderphilipp/jameica.example.git
-	branch = gradle
+	url = git@github.com:willuhn/jameica.example.git
+	branch = master
