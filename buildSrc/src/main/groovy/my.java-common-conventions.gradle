@@ -19,6 +19,8 @@ dependencies {
     // Use JUnit Vintage for JUnit4 test cases
     testImplementation libs.junit.vintage
 
+    testImplementation libs.assertj
+
     // Use JUnit Jupiter Engine for testing.
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 }
