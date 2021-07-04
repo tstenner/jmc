@@ -14,6 +14,8 @@ repositories {
 dependencies {
     // Use JUnit Jupiter API for testing.
     testImplementation libs.junit.jupiter
+    // support for parameterized tests
+    testImplementation libs.junit.params
     // Use JUnit Vintage for JUnit4 test cases
     testImplementation libs.junit.vintage
 
