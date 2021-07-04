@@ -1,6 +1,6 @@
 plugins {
     // enable generation of Eclipse project files
-    id 'eclipse' // optional (to )
+    id 'eclipse'
     // enable generation of IntelliJ IDEA project files
     id 'idea'
 }
